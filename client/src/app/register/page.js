@@ -7,13 +7,15 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const handleRegister = async () => {
+  const handleRegister = async (e) => {
     e.preventDefault();
+    console.log("submit");
     const res = await fetch("http://localhost:5000/api/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     });
+    console.log(res);
 
     if (res.ok) {
       router.push("/login");
