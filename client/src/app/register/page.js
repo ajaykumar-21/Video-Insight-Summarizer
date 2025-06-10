@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+const url = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -10,7 +12,7 @@ export default function RegisterPage() {
   const handleRegister = async (e) => {
     e.preventDefault();
     console.log("submit");
-    const res = await fetch("http://localhost:5000/api/auth/register", {
+    const res = await fetch(`${url}/api/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
