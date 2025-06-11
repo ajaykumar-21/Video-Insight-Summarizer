@@ -16,7 +16,7 @@ export default function DashboardPage() {
   // Redirect if not logged in
   useEffect(() => {
     if (!token) {
-      router.push("/login");
+      router.push("/");
     }
   }, [token]);
 
