@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "../../context/AuthContext";
 
 const url = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000";
+// console.log(url);
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -19,7 +20,10 @@ export default function LoginPage() {
       body: JSON.stringify({ email, password }),
     });
 
+    console.log("Status:", res.status);
+
     const data = await res.json();
+    console.log("Response:", data);
     if (res.ok && data.token) {
       login(data.token);
       router.push("/dashboard");
