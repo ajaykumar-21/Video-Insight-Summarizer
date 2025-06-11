@@ -11,7 +11,7 @@ const app = express();
 // ✅ Allow only your frontend domain in production
 const allowedOrigins = [
   "http://localhost:3000",
-  "video-insight-summarizer-theta.vercel.app",
+  "https://video-insight-summarizer-silk.vercel.app",
 ];
 
 app.use(
