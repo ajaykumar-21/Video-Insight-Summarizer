@@ -14,24 +14,27 @@ export default function LoginPage() {
   const { login } = useAuth();
 
   const handleLogin = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent default form submission behavior
 
-    // Basic validation
+    // Basic input validation
     if (!email || !password) {
       alert("All fields are required");
       return;
     }
 
+    // Make a POST request to the login API endpoint
     const res = await fetch(`${url}/api/auth/login`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json" }, // Send data as JSON
       body: JSON.stringify({ email, password }),
     });
 
-    console.log("Status:", res.status);
+    // console.log("Status:", res.status);
 
-    const data = await res.json();
-    console.log("Response:", data);
+    const data = await res.json(); // Parse JSON response
+    // console.log("Response:", data);
+
+    // If login is successful and token is returned
     if (res.ok && data.token) {
       login(data.token);
       router.push("/dashboard");

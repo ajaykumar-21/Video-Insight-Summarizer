@@ -11,9 +11,9 @@ export default function RegisterPage() {
   const router = useRouter();
 
   const handleRegister = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent form from refreshing the page
 
-    // Basic validation
+    // Basic validation: Check if all fields are filled
     if (!email || !password || !confirmPassword) {
       alert("All fields are required");
       return;
@@ -26,6 +26,7 @@ export default function RegisterPage() {
     }
 
     try {
+      //  Send POST request to the registration API
       const res = await fetch(`${url}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

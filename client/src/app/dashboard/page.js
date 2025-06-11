@@ -13,30 +13,32 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Redirect if not logged in
+  // Redirect to homepage if the user is not logged in (no token)
   useEffect(() => {
     if (!token) {
-      router.push("/");
+      router.push("/"); // Redirect to home page
     }
   }, [token]);
 
   const fetchMetadata = async () => {
     setError("");
     setLoading(true);
-    setVideoData(null);
+    setVideoData(null); // Clear previous video data
 
     try {
+      // Send POST request to backend API with video URL and JWT token
       const res = await fetch("http://localhost:5000/api/video/metadata", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`, // Attach JWT token for auth
         },
-        body: JSON.stringify({ url }),
+        body: JSON.stringify({ url }), // Send video URL in request body
       });
 
       const data = await res.json();
 
+      // If response is not OK (e.g., 400, 500), throw an error
       if (!res.ok) {
         throw new Error(data.message || "Something went wrong");
       }

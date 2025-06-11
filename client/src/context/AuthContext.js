@@ -8,13 +8,15 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
 
   useEffect(() => {
+    // On initial load, check if a token exists in localStorage
     const savedToken = localStorage.getItem("token");
     if (savedToken) {
       setToken(savedToken);
-      setUser({});
+      setUser({}); // Dummy user object (can be extended later with actual user data)
     }
   }, []);
 
+  // Login function: Save token and set user state
   const login = (token) => {
     localStorage.setItem("token", token);
     setToken(token);
@@ -28,6 +30,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
+    // Provide auth values (token, user, login, logout) to the entire app
     <AuthContext.Provider value={{ user, token, login, logout }}>
       {children}
     </AuthContext.Provider>

@@ -8,16 +8,17 @@ const videoRoutes = require("./routes/videoRoutes");
 
 const app = express();
 
-// ✅ Allow only your frontend domain in production
+// Define which frontend domains are allowed to make requests to your backend
 const allowedOrigins = [
   "http://localhost:3000",
   "https://video-insight-summarizer-silk.vercel.app",
 ];
 
+// Use CORS middleware to apply the allowed origins
 app.use(
   cors({
-    origin: allowedOrigins,
-    credentials: true,
+    origin: allowedOrigins, // only allow requests from these origins
+    credentials: true, // allow cookies and authorization headers to be sent
   })
 );
 
