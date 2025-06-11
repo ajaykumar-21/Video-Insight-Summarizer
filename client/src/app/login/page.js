@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../../context/AuthContext";
 
-const url = process.env.NEXT_PUBLIC_API_BASE_URL;
+const url = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
