@@ -6,7 +6,7 @@ export default function Home() {
   const router = useRouter();
 
   const handleLogin = () => {
-    router.push("/login");
+    router.push("/register");
   };
 
   return (
@@ -23,7 +23,7 @@ export default function Home() {
           onClick={handleLogin}
           className="px-6 py-3 bg-white text-gray-900 rounded-full text-lg font-semibold hover:bg-gray-100 transition"
         >
-          Login to Continue
+          Register to Continue
         </button>
       </div>
     </main>
